@@ -44,6 +44,11 @@ module.exports = {
                 options: {
                     name: 'assets/files/[name].[ext]',
                 },
+            },            
+            {
+                test: /\.(frag|vert|glsl)$/,
+                exclude: /node_modules/,
+                use: ['raw-loader', 'glslify-loader'],
             },
         ],
     },

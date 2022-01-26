@@ -1,20 +1,14 @@
 import * as THREE from 'three';
 import vertex from './shaders/cloud.vert';
 import fragment from './shaders/cloud.frag';
-import { hexToRgbValues, darkMinus4 } from '../../styles/colors';
 import './smoke.scss';
-
-const { r, g, b } = hexToRgbValues(darkMinus4);
-const normalizedR = r / 256;
-const normalizedG = g / 256;
-const normalizedB = b / 256;
 
 /**
  * @param {Number} duration length of animation
  * @returns {AnimationHookReturnValue} pass into <Transition />>
  */
-function useSmoke(duration = 1000, enterDuration = duration / 2) {
-    const startLocation = 1.3;
+function useSmoke(duration = 2000, enterDuration = duration / 4) {
+    const startLocation = 1.2;
     const gradientSize = startLocation - 1;
 
     return {
@@ -29,7 +23,7 @@ function useSmoke(duration = 1000, enterDuration = duration / 2) {
 
             const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
             renderer.setClearColor(0x000000, 0);
-            const wipeDuration = duration * 0.5;
+            const wipeDuration = duration * 0.75;
             const fadeDuration = duration - wipeDuration;
 
             const { scene, planeGeometry, planeMaterial, planeMesh, camera } = setStage({
@@ -81,11 +75,11 @@ function setStage(opts) {
             ...THREE.UniformsUtils.clone(THREE.ShaderLib.sprite.uniforms),
             uThreshold: { value: 1.25 },
             uTime: { value: 0 },
-            uScaleFactor: { value: 12 },
-            uTimeFactor: { value: 0.004 },
+            uScaleFactor: { value: 3 },
+            uTimeFactor: { value: 0.001 },
             uDisplayStrength: { value: 0.12 },
             uGradientSize: { value: opts.gradientSize },
-            uColor: { value: new THREE.Vector3(normalizedR, normalizedG, normalizedB) },
+            uColor: { value: new THREE.Vector3(0.25, 0.25, 0.25) },
             uResolution: {
                 value: new THREE.Vector2(
                     window.innerWidth * window.devicePixelRatio,
