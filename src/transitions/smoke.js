@@ -82,8 +82,8 @@ function setStage(opts) {
             uColor: { value: new THREE.Vector3(0.25, 0.25, 0.25) },
             uResolution: {
                 value: new THREE.Vector2(
-                    window.innerWidth * window.devicePixelRatio,
-                    window.innerHeight * window.devicePixelRatio,
+                    window.innerWidth,
+                    window.innerHeight,
                 ),
             },
         },

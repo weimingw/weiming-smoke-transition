@@ -35,7 +35,10 @@
                 >/src/transitions/shaders/cloud.frag</a
             >)
         </p>
-        <p>At its base, the shader has 3 parts</p>
+        <p>
+            At its base, the shader has 3 parts from which the pixels derive
+            their color:
+        </p>
         <ol>
             <li>
                 The part of the screen that has not been wiped over yet, which
@@ -51,10 +54,26 @@
             </li>
         </ol>
         <p>At this point, it looks like this:</p>
-        
+        <img :src="baseImg" />
         <p>
-            Since it needs to look like billowing smoke, the pixels in the gradient portion must have random shades similar to the shade of adjacent cells, and we bypass the need for knowing the output of other cells by using noise functions! (Yet another level of sorcery).
+            Since it needs to look like billowing smoke, the pixels in the
+            gradient portion must have random shades similar to the shade of
+            adjacent cells, and we bypass the need for knowing the output of
+            other cells by using noise functions! (Yet another level of
+            sorcery).
         </p>
+        <p>
+            We utilize the noise function to randomly sample pixels from the
+            base if the pixel falls into the "gradient" portion of the screen.
+            The process looks like this, with the pixels taking on the color at
+            the end of its arrow:
+        </p>
+        <img :src="samplingImg" />
+        <p>
+            The end result of this sorcery: it looks like billowing smoke.
+            (Don't worry, I don't really get it either. It just works.)
+        </p>
+        <p>&nbsp;</p>
         <h4>And of course, the other half, custom Vue transitions</h4>
         <p>
             If you didn't already know, Vue has exceptional support for custom
@@ -90,7 +109,20 @@
                 &lt;canvas&gt;.
             </li>
         </ol>
+        <h4>The things I left out</h4>
+        <p>For brevity, I didn't include a few other things:</p>
+        <p>The cloud.vert file is a vertex shader file that basically sets up the scene inside the &lt;canvas&gt; so that we are looking only at the output of cloud shaders.</p>
+        <p>cloud.frag also includes some uniforms that lets us customize how the output looks and helps with scaling the output to look good on many aspect ratios.</p>
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<script setup>
+import baseImg from '../assets/base.gif';
+import samplingImg from '../assets/sampling.png';
+</script>
+
+<style lang="scss" scoped>
+.how img {
+    width: 300px;
+}
+</style>

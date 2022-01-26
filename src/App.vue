@@ -50,6 +50,7 @@ const { enterAnimation, leaveAnimation } = useSmoke();
 .content {
     flex: 1 0;
     position: relative;
+    overflow-y: auto;
 }
 
 .content > * {
