@@ -13,7 +13,7 @@
         <p>The important thing here is fragment shaders.</p>
         <p>
             For the uninitiated, fragment shaders are chunks of code that run on
-            every single pixel of an output display and spits out a color for
+            every pixels being processed for output and spits out a color for
             the pixel.
         </p>
         <p>
@@ -111,8 +111,16 @@
         </ol>
         <h4>The things I left out</h4>
         <p>For brevity, I didn't include a few other things:</p>
-        <p>The cloud.vert file is a vertex shader file that basically sets up the scene inside the &lt;canvas&gt; so that we are looking only at the output of cloud shaders.</p>
-        <p>cloud.frag also includes some uniforms that lets us customize how the output looks and helps with scaling the output to look good on many aspect ratios.</p>
+        <p>
+            The cloud.vert file is a vertex shader file that basically sets up
+            the scene inside the &lt;canvas&gt; so that we are looking only at
+            the output of cloud shaders.
+        </p>
+        <p>
+            cloud.frag also includes some uniforms that lets us customize how
+            the output looks and helps with scaling the output to look good on
+            many aspect ratios.
+        </p>
     </div>
 </template>
 
